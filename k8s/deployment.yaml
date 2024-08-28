@@ -1,0 +1,40 @@
+#Deployment do postgreSQL
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: postgres
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: postgres
+  template:
+    metadata:
+      labels:
+        app: postgres
+    spec:
+      containers:
+      - name: postgres
+        image: postgres:13.1
+        ports:
+          - containerPort: 5432
+        env:
+          - name: POSTGRES_PASSWORD
+            value: Passw0rd2024!
+          - name: POSTGRES_USER
+            value: reviewvideo
+          - name: POSTGRES_DB
+            value: reviewvideo
+---
+#Service do postgreSQL
+apiVersion: v1
+kind: Service
+metadata:
+  name: postgres
+spec:
+  selector:
+    app: postgres
+  ports:
+  - port: 5432
+  type: ClusterIP
+
