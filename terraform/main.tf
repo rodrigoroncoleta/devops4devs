@@ -8,9 +8,8 @@ terraform {
 }
 
 provider "azurerm" {
-  features {
-
-  }
+  features {}
+  subscription_id = "00000000000000000000000000"
 }
 
 //grupo de recurso a ser criado no azure
@@ -31,7 +30,7 @@ resource "azurerm_kubernetes_cluster" "aula_k8s" {
   default_node_pool {
     name       = "default"
     node_count = var.node_count
-    vm_size    = "Standard_D2_v2"
+    vm_size    = "Standard_D2pds_v5"
   }
 
   identity {

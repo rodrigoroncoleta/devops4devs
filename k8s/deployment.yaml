@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
         - name: postgres
-          image: postgres:13.1 #nome imagem no docker huber
+          image: postgres:16.4 #nome imagem no docker huber
           ports:
             - containerPort: 5432
           env:
@@ -45,7 +45,7 @@ kind: Deployment
 metadata:
   name: reviewvideo
 spec:
-  replicas: 1
+  replicas: 2
   selector:
     matchLabels:
       app: reviewvideo
@@ -56,7 +56,7 @@ spec:
     spec:
       containers:
         - name: reviewvideo
-          image: roncoleta/devops4dev-review:v1-arm64
+          image: roncoleta/devops4dev-review:v2-multi
           ports:
             - containerPort: 8080
           env:
@@ -64,6 +64,7 @@ spec:
               value: "8080"
             - name: ConnectionStrings_DefaultConnection 
               value: "Host=postgres;Database=reviewvideo;Username=reviewvideo;Password=Passw0rd2024!" 
+              #Variável do host do banco de dados não funcionou, não pegou daqui, tive que por direto no appsettings.json
 ---
 # service da aplicação
 apiVersion: v1
