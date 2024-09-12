@@ -24,7 +24,7 @@ jobs:
           push: true
           file: ./src/Review-Filmes.Web/Dockerfile
           tags: |
-            roncoleta/devops4dev-review:v${{ github.row_number }}
+            roncoleta/devops4dev-review:v${{ github.run_number }}
             roncoleta/devops4dev-review:latest
 
        
