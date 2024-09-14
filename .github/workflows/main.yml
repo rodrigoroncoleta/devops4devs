@@ -21,6 +21,9 @@ jobs:
         uses: docker/build-push-action@v6
         with:
           context: ./src
+          platforms:
+            - linux/amd64
+            - linux/arm64
           push: true
           file: ./src/Review-Filmes.Web/Dockerfile
           tags: |
@@ -35,17 +38,5 @@ jobs:
       - name: Obtendo o código
         uses: actions/checkout@v4
 
-      - name: Configuração do kubeconfig
-      - uses: azure/k8s-set-context@v4
-        with:
-          method: kubeconfig
-          kubeconfig: ${{ secrets.K8S_CONFIG }}
-
-      - name: Execução do kubectl apply
-      - uses: Azure/k8s-deploy@v5
-        with:
-          manifests: |
-            k8s/deployment.yaml
-          images: |
-            roncoleta/devops4dev-review:v${{ github.run_number }}
+      
           
