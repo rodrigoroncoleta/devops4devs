@@ -56,13 +56,13 @@ spec:
     spec:
       containers:
         - name: reviewvideo
-          image: roncoleta/devops4dev-review:v2-multi
+          image: roncoleta/devops4dev-review:latest
           ports:
             - containerPort: 8080
           env:
             - name: ASPNETCORE_HTTP_PORTS
               value: "8080"
-            - name: ConnectionStrings_DefaultConnection 
+            - name: ConnectionStrings__DefaultConnection 
               value: "Host=postgres;Database=reviewvideo;Username=reviewvideo;Password=Passw0rd2024!" 
               #Variável do host do banco de dados não funcionou, não pegou daqui, tive que por direto no appsettings.json
 ---
